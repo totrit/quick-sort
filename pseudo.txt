@@ -3,26 +3,26 @@ Output: Nothing returned explicitly, but the array of Integers will be sorted as
 
 function quick_sort(array, left, right)
     sentinel <- random() between left and right
-    swap(sentinel, right)
+    swap sentinel and right
     little_seacher <- right - 1
     for cursor from left to little_seacher cursor ++ do
-        if array[cursor] < array[right] then
+        if array[cursor] <= array[right] then
             continue
         end
         for cursor < little_seacher do
             if array[littel_seacher] <= array[right] then
-                swap(array[cursor], array[little_seacher])
+                swap array[cursor] and array[little_seacher]
                 little_seacher --
                 exit
             else
                 little_seacher --
             end
         end
-        if little_seacher > cursor then
+        if little_seacher <= cursor then
             exit
         end
     end
-    swap(array[cursor], array[right])
-    quick_sort(array, left, cursor - 1)
+    swap array[cursor] and array[right]
+    quick_sort(array, left, cursor)
     quick_sort(array, cursor + 1, right)
 end of function
