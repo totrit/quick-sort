@@ -18,9 +18,9 @@ function quick_sort(array, left, right)
             exit
         end
     end
-	if array[cursor] > array[right] then
-		swap array[cursor] and array[right]
-	end
+    if array[cursor] > array[right] then
+	swap array[cursor] and array[right]
+    end
     quick_sort(array, left, cursor - 1)
     quick_sort(array, cursor + 1, right)
 end of function
