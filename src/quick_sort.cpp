@@ -41,7 +41,7 @@ void quick_sort(int array[], int left, int right) {
 	int cursor = left;
 
 	// 3. left-to-right encounter the larger value, meanwhile right-to-left search the smaller value, swap them
-	for (; cursor < little_seacher; cursor++) {
+	for (; cursor <= little_seacher; cursor++) {
 		if (array[cursor] <= pivot) {
 			// Those who are smaller than the pivot will not be moved to the tail of the array
 			cout << "value at cursor=" << cursor
@@ -49,13 +49,12 @@ void quick_sort(int array[], int left, int right) {
 			continue;
 		}
 		// The left-to-right cursor should not proceed the right-to-left smaller-number-seacher
-		for (; little_seacher > cursor; little_seacher--) {
+		for (; little_seacher >= cursor; little_seacher--) {
 			// Have a smaller number to swap
 			if (array[little_seacher] <= pivot) {
 				cout << "swap big&small: " << cursor << ", "
 						<< little_seacher << "where values are " << array[cursor] << ", " << array[little_seacher]<< endl;
 				swap(array, cursor, little_seacher);
-				little_seacher--;
 				break;
 			}
 		}
@@ -69,15 +68,10 @@ void quick_sort(int array[], int left, int right) {
 	if (array[cursor] > array[right]) {
 		cout << "at the end of recurcive, swap " << cursor << ", " << right << "whose values are " << array[cursor] << ", " << array[right] << endl;
 		swap(array, cursor, right);
-	} else if (cursor < right && array[cursor + 1] > array[right]) {
-		cout << "at the end of recurcive, swap " << cursor + 1 << ", " << right << "whose values are " << array[cursor + 1] << ", " << array[right] << endl;
-		cursor ++;
-		swap(array, cursor, right);
 	}
 
-	// Don't forget to add cursor itself to the next recursive quick-sort
 	if (cursor > left) {
-		quick_sort(array, left, cursor);
+		quick_sort(array, left, cursor - 1);
 	}
 	if (right > cursor) {
 		quick_sort(array, cursor + 1, right);
@@ -85,11 +79,11 @@ void quick_sort(int array[], int left, int right) {
 }
 
 int main() {
-	const int array_size = 10000;
-	int* array = new int[10000];
+	const int array_size = 100000;
+	int* array = new int[100000];
 	srand(time(NULL));
 	for (int i = 0; i < array_size; i++) {
-		array[i] = rand() % 10000;
+		array[i] = rand() % 1000000;
 	}
 
 	// stl sort
